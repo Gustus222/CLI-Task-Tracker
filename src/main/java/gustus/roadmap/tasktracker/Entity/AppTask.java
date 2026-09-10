@@ -1,6 +1,7 @@
 package gustus.roadmap.tasktracker.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import gustus.roadmap.tasktracker.Enum.AppTaskStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,7 +20,8 @@ public class AppTask {
     @Id
     private Long id;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private AppTaskStatus status;
 
     private String description;
 
