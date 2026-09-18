@@ -26,6 +26,7 @@ public class AppTask {
     private String description;
 
     @CreationTimestamp
+    @Column (updatable = false)
     private Instant createdAt;
 
     @LastModifiedDate
