@@ -31,8 +31,4 @@ public class AppTask {
     @LastModifiedDate
     private Instant updatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @JsonBackReference
-    private User user;
 }
