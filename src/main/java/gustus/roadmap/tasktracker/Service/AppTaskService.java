@@ -3,6 +3,7 @@ package gustus.roadmap.tasktracker.Service;
 import gustus.roadmap.tasktracker.Entity.AppTask;
 import gustus.roadmap.tasktracker.Repository.AppTaskRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 import static gustus.roadmap.tasktracker.Enum.AppTaskStatus.*;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AppTaskService {
     private final AppTaskRepository repository;
 
