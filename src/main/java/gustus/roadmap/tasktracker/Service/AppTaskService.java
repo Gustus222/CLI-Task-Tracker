@@ -22,7 +22,7 @@ public class AppTaskService {
                 .description(desc)
                 .build();
         repository.save(task);
-        System.out.println("Task Created: " + desc);
+        System.out.println("Output: Task added successfully (ID: %s)".formatted(task.getId()));
     }
 
     public void updateTask(Long id, String desc) {
