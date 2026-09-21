@@ -49,6 +49,38 @@ public class TasktrackerApplication implements CommandLineRunner {
 					}
 				}
 
+				case "mark-inprogress" -> {
+					if (twoParts.length <= 1) {
+						System.out.println("Added task must have a description, try again");
+					} else {
+						service.markInProgress(Long.parseLong(twoParts[1]));
+					}
+				}
+
+				case "mark-done" -> {
+					if (twoParts.length <= 1) {
+						System.out.println("Added task must have a description, try again");
+					} else {
+						service.markDone(Long.parseLong(twoParts[1]));
+					}
+				}
+
+				case "list" -> {
+					if (twoParts.length <= 1) {
+						System.out.println("You must add what to tasks to list, try again");
+					} else if (twoParts[1].equalsIgnoreCase("done")){
+						service.listDone();
+					} else if (twoParts[1].equalsIgnoreCase("todo")){
+						service.listTodo();
+					} else if (twoParts[1].equalsIgnoreCase("inprogress")){
+						service.listInProgress();
+					} else if (twoParts[1].equalsIgnoreCase("all")){
+						service.listAll();
+					} else {
+						System.out.println("Unrecognized Status, try again");
+					}
+				}
+
 				case "exit" -> running = false;
 			}
 		}

@@ -43,32 +43,36 @@ public class AppTaskService {
         repository.save(task);
     }
 
-    public String listTodo() {
-        return repository.findAllByStatusContaining(TODO)
+    public void listTodo() {
+        var x = repository.findAllByStatusContaining(TODO)
                 .stream()
                 .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
                 .collect(Collectors.joining("\n"));
+        System.out.println(x);
     }
 
-    public String listInProgress() {
-        return repository.findAllByStatusContaining(IN_PROGRESS)
+    public void listInProgress() {
+        var x = repository.findAllByStatusContaining(IN_PROGRESS)
                 .stream()
                 .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
                 .collect(Collectors.joining("\n"));
+        System.out.println(x);
     }
 
-    public String listDone() {
-        return repository.findAllByStatusContaining(DONE)
+    public void listDone() {
+        var x = repository.findAllByStatusContaining(DONE)
                 .stream()
                 .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
                 .collect(Collectors.joining("\n"));
+        System.out.println(x);
     }
 
-    public String listAll() {
-        return repository.findAll()
+    public void listAll() {
+        var x = repository.findAll()
                 .stream()
                 .map(task -> "[%d] \"%s\" Status: %s".formatted(task.getId(), task.getDescription(), task.getStatus()))
                 .collect(Collectors.joining("\n"));
+        System.out.println(x);
     }
 
     public void deleteTask(Long id) {
