@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface AppTaskRepository extends JpaRepository<AppTask, Long> {
-    List<AppTask> findAllByStatusContaining(AppTaskStatus status);
+    List<AppTask> findAllByStatus(AppTaskStatus status);
 }

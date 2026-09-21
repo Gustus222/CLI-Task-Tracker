@@ -24,7 +24,7 @@ public class TasktrackerApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
-
+		System.out.println("List of cmds: add, update, mark-inprogress, mark-done, list(all, done, todo, inprogress), exit");
 
 		while(running) {
 			String input = scanner.nextLine();
@@ -32,7 +32,6 @@ public class TasktrackerApplication implements CommandLineRunner {
 			String[] threeParts = input.split(" ", 3);
 			String command = twoParts[0];
 			switch(command) {
-
 				case "add" -> {
 					if (twoParts.length <= 1) {
 						System.out.println("Added task must have a description, try again");
@@ -81,8 +80,15 @@ public class TasktrackerApplication implements CommandLineRunner {
 					}
 				}
 
-				case "exit" -> running = false;
-			}
+                case "exit" -> {
+					System.out.println("exiting the application");
+					running = false;
+				}
+                default -> {
+                    System.out.println("Unrecognized Command, try again");
+                }
+
+            }
 		}
 	}
 }

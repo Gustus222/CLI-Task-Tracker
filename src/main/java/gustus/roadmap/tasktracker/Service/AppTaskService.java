@@ -5,7 +5,6 @@ import gustus.roadmap.tasktracker.Repository.AppTaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static gustus.roadmap.tasktracker.Enum.AppTaskStatus.*;
@@ -44,7 +43,7 @@ public class AppTaskService {
     }
 
     public void listTodo() {
-        var x = repository.findAllByStatusContaining(TODO)
+        var x = repository.findAllByStatus(TODO)
                 .stream()
                 .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
                 .collect(Collectors.joining("\n"));
@@ -52,7 +51,7 @@ public class AppTaskService {
     }
 
     public void listInProgress() {
-        var x = repository.findAllByStatusContaining(IN_PROGRESS)
+        var x = repository.findAllByStatus(IN_PROGRESS)
                 .stream()
                 .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
                 .collect(Collectors.joining("\n"));
@@ -60,7 +59,7 @@ public class AppTaskService {
     }
 
     public void listDone() {
-        var x = repository.findAllByStatusContaining(DONE)
+        var x = repository.findAllByStatus(DONE)
                 .stream()
                 .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
                 .collect(Collectors.joining("\n"));
