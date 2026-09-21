@@ -28,15 +28,24 @@ public class TasktrackerApplication implements CommandLineRunner {
 
 		while(running) {
 			String input = scanner.nextLine();
-			String[] parts = input.split(" ", 2); // splits into at most 2 pieces
-			String command = parts[0];
+			String[] twoParts = input.split(" ", 2);
+			String[] threeParts = input.split(" ", 3);
+			String command = twoParts[0];
 			switch(command) {
 
 				case "add" -> {
-					if (parts.length <= 1) {
+					if (twoParts.length <= 1) {
 						System.out.println("Added task must have a description, try again");
 					} else {
-						service.createTask(parts[1]);
+						service.createTask(twoParts[1]);
+					}
+				}
+
+				case "update" -> {
+					if (threeParts.length <= 1) {
+						System.out.println("Updated task must have an ID, try again");
+					} else {
+						service.updateTask(Long.parseLong(threeParts[1]), threeParts[2]);
 					}
 				}
 
