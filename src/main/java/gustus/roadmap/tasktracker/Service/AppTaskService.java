@@ -2,7 +2,6 @@ package gustus.roadmap.tasktracker.Service;
 
 import gustus.roadmap.tasktracker.Entity.AppTask;
 import gustus.roadmap.tasktracker.Repository.AppTaskRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,16 +43,32 @@ public class AppTaskService {
         repository.save(task);
     }
 
-    public List<AppTask> listTodo() {
-        return repository.findAllByStatusContaining(TODO);
+    public String listTodo() {
+        return repository.findAllByStatusContaining(TODO)
+                .stream()
+                .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
+                .collect(Collectors.joining("\n"));
     }
 
-    public List<AppTask> listInProgress() {
-        return repository.findAllByStatusContaining(IN_PROGRESS);
+    public String listInProgress() {
+        return repository.findAllByStatusContaining(IN_PROGRESS)
+                .stream()
+                .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
+                .collect(Collectors.joining("\n"));
     }
 
-    public List<AppTask> listDone() {
-        return repository.findAllByStatusContaining(DONE);
+    public String listDone() {
+        return repository.findAllByStatusContaining(DONE)
+                .stream()
+                .map(task -> "[%d] \"%s\"".formatted(task.getId(), task.getDescription()))
+                .collect(Collectors.joining("\n"));
+    }
+
+    public String listAll() {
+        return repository.findAll()
+                .stream()
+                .map(task -> "[%d] \"%s\" Status: %s".formatted(task.getId(), task.getDescription(), task.getStatus()))
+                .collect(Collectors.joining("\n"));
     }
 
     public void deleteTask(Long id) {
